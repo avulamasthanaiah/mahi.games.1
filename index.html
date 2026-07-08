@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Tiny Chaos</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <button id="exitFullscreen">✕</button>
+
+    <!-- ===============================
+         Animated Background
+    ================================ -->
+
+    <div id="background"></div>
+
+    <!-- Floating Letters / Emojis -->
+
+    <div id="floatingContainer"></div>
+
+    <!-- Mouse Effects -->
+
+    <div id="mouseEffects"></div>
+
+    <!-- ===============================
+            TOP HUD
+    ================================ -->
+
+    <header id="hud">
+
+        <div class="logo">
+
+            🐸 Tiny Chaos
+
+        </div>
+
+        <div class="hud-right">
+
+            <div class="pill">
+
+                <span class="label">
+                    Keys
+                </span>
+
+                <span id="keyCount">
+                    0
+                </span>
+
+            </div>
+
+            <div
+                class="pill"
+                id="chaosLevel">
+
+                TINY CHAOS
+
+            </div>
+
+            <div class="pill">
+
+                <span class="label">
+                    Time
+                </span>
+
+                <span id="timer">
+                    00:00
+                </span>
+
+            </div>
+
+        </div>
+
+    </header>
+
+    <!-- ===============================
+           START SCREEN
+    ================================ -->
+
+    <section id="startScreen">
+
+        <div class="glass">
+
+            <h1>
+
+                🐸 Tiny Chaos
+
+            </h1>
+
+            <p>
+
+                Smash your keyboard and
+                watch beautiful chaos happen.
+
+            </p>
+
+            <button
+                id="startButton">
+
+                START SMASHING
+
+            </button>
+
+            <p class="hint">
+
+                ESC to finish anytime
+
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- ===============================
+            REPORT SCREEN
+    ================================ -->
+
+    <section id="reportScreen">
+
+        <div class="glass report">
+
+            <h1>
+
+                🎉 Session Complete
+
+            </h1>
+
+            <div class="statsGrid">
+
+                <div class="card">
+
+                    <h2 id="reportKeys">
+
+                        0
+
+                    </h2>
+
+                    <span>
+
+                        Keys Smashed
+
+                    </span>
+
+                </div>
+
+                <div class="card">
+
+                    <h2 id="reportTime">
+
+                        0s
+
+                    </h2>
+
+                    <span>
+
+                        Duration
+
+                    </span>
+
+                </div>
+
+                <div class="card">
+
+                    <h2 id="reportChaos">
+
+                        Tiny Chaos
+
+                    </h2>
+
+                    <span>
+
+                        Chaos Level
+
+                    </span>
+
+                </div>
+
+            </div>
+
+            <div class="buttons">
+
+                <button
+                    id="shareButton">
+
+                    📤 Share Result
+
+                </button>
+
+                <button
+                    id="restartButton">
+
+                    🔄 Keep Smashing
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ===============================
+            AUDIO (Optional)
+    ================================ -->
+
+    <audio
+        id="popSound"
+        preload="auto">
+
+    </audio>
+
+    <!-- ===============================
+            JAVASCRIPT
+    ================================ -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
