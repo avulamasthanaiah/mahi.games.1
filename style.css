@@ -1,0 +1,860 @@
+/* =====================================================
+   Tiny Chaos
+   style.css (Part 1)
+===================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,
+body{
+
+    width:100%;
+    height:100%;
+    overflow:hidden;
+
+    font-family:
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    background:#07111f;
+
+    color:#fff;
+
+}
+
+/* ==========================
+      BACKGROUND
+========================== */
+
+#background{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    z-index:1;
+    pointer-events:none;
+
+    background:
+        radial-gradient(circle at top,
+            #233a63 0%,
+            #13233d 35%,
+            #07111f 100%);
+}
+
+/* White Bubbles */
+
+.bubble{
+
+    position:absolute;
+
+    border-radius:50%;
+
+    background:white;
+
+    opacity:.9;
+
+    box-shadow:
+        0 0 8px white,
+        0 0 18px white;
+
+    animation:bubbleFall linear infinite;
+
+}
+
+@keyframes bubbleFall{
+
+    from{
+
+        transform:
+            translateY(-120px);
+
+    }
+
+    to{
+
+        transform:
+            translateY(calc(100vh + 200px));
+
+    }
+
+}
+
+/* ==========================
+         HUD
+========================== */
+
+#hud{
+
+    position:fixed;
+
+    top:20px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:94%;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    z-index:100;
+
+}
+
+.logo{
+
+    font-size:32px;
+
+    font-weight:700;
+
+    text-shadow:
+
+        0 0 20px rgba(255,255,255,.35);
+
+}
+
+.hud-right{
+
+    display:flex;
+
+    gap:14px;
+
+}
+
+.pill{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:14px 22px;
+
+    border-radius:40px;
+
+    border:1px solid rgba(255,255,255,.15);
+
+    background:
+
+        rgba(255,255,255,.08);
+
+    backdrop-filter:blur(18px);
+
+    box-shadow:
+
+        0 8px 30px rgba(0,0,0,.25);
+
+}
+
+.label{
+
+    opacity:.7;
+
+}
+
+#keyCount{
+
+    font-size:30px;
+
+    font-weight:bold;
+
+}
+
+#chaosLevel{
+
+    font-weight:bold;
+
+    letter-spacing:1px;
+
+}
+
+/* ==========================
+       START SCREEN
+========================== */
+
+#startScreen{
+
+    position:fixed;
+
+    inset:0;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:
+
+        rgba(5,12,22,.88);
+
+    backdrop-filter:blur(8px);
+
+    z-index:500;
+
+}
+
+.glass{
+
+    width:520px;
+
+    max-width:92vw;
+
+    padding:42px;
+
+    border-radius:26px;
+
+    background:
+
+        rgba(255,255,255,.08);
+
+    border:
+
+        1px solid rgba(255,255,255,.18);
+
+    backdrop-filter:blur(22px);
+
+    box-shadow:
+
+        0 20px 60px rgba(0,0,0,.45);
+
+    text-align:center;
+
+}
+
+.glass h1{
+
+    font-size:52px;
+
+    margin-bottom:16px;
+
+}
+
+.glass p{
+
+    font-size:20px;
+
+    opacity:.82;
+
+    line-height:1.5;
+
+    margin-bottom:28px;
+
+}
+
+.hint{
+
+    margin-top:18px;
+
+    opacity:.55;
+
+    font-size:15px;
+
+}
+
+/* ==========================
+        BUTTONS
+========================== */
+
+button{
+
+    border:none;
+
+    cursor:pointer;
+
+    border-radius:16px;
+
+    padding:18px 36px;
+
+    font-size:20px;
+
+    font-weight:bold;
+
+    color:#08111f;
+
+    transition:.25s;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #6dc0ff,
+            #8fd4ff,
+            #e486df);
+
+}
+
+button:hover{
+
+    transform:
+
+        translateY(-2px)
+        scale(1.04);
+
+    box-shadow:
+
+        0 12px 30px rgba(109,192,255,.4);
+
+}
+
+/* ==========================
+   FLOATING ITEMS
+========================== */
+
+#floatingContainer{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    pointer-events:none;
+    z-index:20;
+}
+
+.floatItem{
+
+    position:absolute;
+
+    bottom:-120px;
+
+    left:0;
+
+    font-weight:900;
+
+    color:white;
+
+    user-select:none;
+
+    text-shadow:
+
+        0 0 12px #fff,
+
+        0 0 30px rgba(255,255,255,.55);
+
+    animation:
+
+        floatUp 5s linear forwards;
+
+    will-change: transform, opacity;
+    transform: translateZ(0);
+}
+
+@keyframes floatUp{
+
+    0%{
+
+        transform:
+
+            translateY(0)
+            scale(.7);
+
+        opacity:1;
+
+    }
+
+    20%{
+
+        transform:
+
+            translateY(-15vh)
+            scale(1);
+
+    }
+
+    40%{
+
+        transform:
+
+            translateY(-35vh)
+            scale(1.4);
+
+    }
+
+    70%{
+
+        transform:
+
+            translateY(-70vh)
+            scale(1.9);
+
+    }
+
+    100%{
+
+        transform:
+
+            translateY(-100vh)
+            scale(2.5);
+
+        opacity:0;
+
+    }
+
+}
+
+
+/* =====================================================
+   Tiny Chaos
+   style.css (Part 2)
+===================================================== */
+
+/* ==========================
+      MOUSE EFFECTS
+========================== */
+
+#mouseEffects{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    overflow:hidden;
+    z-index:50;
+}
+
+.mouseRipple{
+
+    position:absolute;
+
+    width:12px;
+    height:12px;
+
+    border-radius:50%;
+
+    border:2px solid rgba(255,255,255,.9);
+
+    box-shadow:
+        0 0 10px rgba(255,255,255,.8),
+        0 0 25px rgba(255,255,255,.45);
+
+    animation:ripple .5s ease-out forwards;
+
+}
+
+@keyframes ripple{
+
+    from{
+
+        transform:scale(.3);
+
+        opacity:1;
+
+    }
+
+    to{
+
+        transform:scale(6);
+
+        opacity:0;
+
+    }
+
+}
+
+/* ==========================
+      REPORT SCREEN
+========================== */
+
+#reportScreen{
+
+    position:fixed;
+
+    inset:0;
+
+    display:none;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:
+        radial-gradient(circle,
+            #13284a,
+            #08111f);
+
+    backdrop-filter:blur(8px);
+
+    z-index:1000;
+
+}
+
+.report{
+
+    width:720px;
+
+    max-width:94vw;
+
+}
+
+/* ==========================
+      RESULT GRID
+========================== */
+
+.statsGrid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:20px;
+
+    margin:35px 0;
+
+}
+
+.card{
+
+    padding:25px;
+
+    border-radius:20px;
+
+    background:
+
+        rgba(255,255,255,.08);
+
+    border:
+
+        1px solid rgba(255,255,255,.15);
+
+    backdrop-filter:blur(18px);
+
+    transition:.3s;
+
+}
+
+.card:hover{
+
+    transform:translateY(-4px);
+
+}
+
+.card h2{
+
+    font-size:42px;
+
+    margin-bottom:8px;
+
+}
+
+.card span{
+
+    opacity:.7;
+
+    font-size:15px;
+
+}
+
+/* ==========================
+       BUTTON GROUP
+========================== */
+
+.buttons{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:14px;
+
+}
+
+#restartButton{
+
+    background:
+
+        rgba(255,255,255,.12);
+
+    color:white;
+
+}
+
+/* ==========================
+     CHAOS COLORS
+========================== */
+
+.tiny{
+
+    color:#6ed8ff;
+
+}
+
+.serious{
+
+    color:#ffd74e;
+
+}
+
+.chaos{
+
+    color:#ff6a6a;
+
+}
+
+/* ==========================
+     GLOW ANIMATION
+========================== */
+
+.glow{
+
+    animation:glow 1.5s infinite alternate;
+
+}
+
+@keyframes glow{
+
+    from{
+
+        text-shadow:
+
+            0 0 10px white,
+
+            0 0 20px white;
+
+    }
+
+    to{
+
+        text-shadow:
+
+            0 0 20px white,
+
+            0 0 45px #89d4ff,
+
+            0 0 70px #89d4ff;
+
+    }
+
+}
+
+/* ==========================
+      FLOAT VARIANTS
+========================== */
+
+.floatLarge{
+
+    animation:floatLarge 5s linear forwards;
+
+}
+
+@keyframes floatLarge{
+
+    0%{
+
+        transform:
+            translateY(0)
+            scale(.8);
+
+        opacity:1;
+
+    }
+
+    100%{
+
+        transform:
+            translateY(-100vh)
+            scale(3);
+
+        opacity:0;
+
+    }
+
+}
+
+.floatEmoji{
+
+    animation:floatEmoji 5s ease-out forwards;
+
+}
+
+@keyframes floatEmoji{
+
+    0%{
+
+        transform:
+            translateY(0)
+            scale(.8);
+
+    }
+
+    50%{
+
+        transform:
+            translateY(-50vh)
+            scale(2);
+
+    }
+
+    100%{
+
+        transform:
+            translateY(-100vh)
+            scale(2.8);
+
+        opacity:0;
+
+    }
+
+}
+
+/* ==========================
+      MOBILE
+========================== */
+
+@media(max-width:900px){
+
+    #hud{
+
+        width:98%;
+
+        flex-direction:column;
+
+        gap:15px;
+
+        top:10px;
+
+    }
+
+    .logo{
+
+        font-size:22px;
+
+    }
+
+    .hud-right{
+
+        flex-wrap:wrap;
+
+        justify-content:center;
+
+    }
+
+    .pill{
+
+        padding:10px 14px;
+
+        font-size:14px;
+
+    }
+
+    #keyCount{
+
+        font-size:22px;
+
+    }
+
+    .glass{
+
+        padding:28px;
+
+    }
+
+    .glass h1{
+
+        font-size:36px;
+
+    }
+
+    .glass p{
+
+        font-size:16px;
+
+    }
+
+    .statsGrid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .card h2{
+
+        font-size:34px;
+
+    }
+
+}
+
+/* ==========================
+     FADE HELPERS
+========================== */
+
+.fadeIn{
+
+    animation:fadeIn .5s forwards;
+
+}
+
+.fadeOut{
+
+    animation:fadeOut .5s forwards;
+
+}
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+
+    }
+
+    to{
+
+        opacity:1;
+
+    }
+
+}
+
+@keyframes fadeOut{
+
+    from{
+
+        opacity:1;
+
+    }
+
+    to{
+
+        opacity:0;
+
+    }
+
+}
+
+#exitFullscreen {
+
+    position: fixed;
+
+    bottom: 24px;
+    right: 24px;
+
+    width: 60px;
+    height: 60px;
+
+    border-radius: 50%;
+
+    display: none;
+
+    background: rgba(0,0,0,.45);
+    border: 1px solid rgba(255,255,255,.25);
+
+    color: white;
+    font-size: 28px;
+
+    backdrop-filter: blur(12px);
+
+    z-index: 99999;
+
+    transition: .2s;
+}
+
+#exitFullscreen:hover{
+    transform: scale(1.1);
+}
