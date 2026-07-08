@@ -301,11 +301,7 @@ function randomEmoji() {
 
 }
 
-// ============================
-// Keyboard Events
-// ============================
-
-document.addEventListener("keydown", (event) => {
+function registerSmash(character, isEmoji = false) {
 
     if (!gameRunning)
         return;
@@ -314,25 +310,37 @@ document.addEventListener("keydown", (event) => {
 
     updateChaosLevel();
 
-    const key = event.key;
+    createFloatingItem(character, isEmoji);
 
-    // Letters & Numbers
-    if (/^[a-zA-Z0-9]$/.test(key)) {
+}
 
-        createFloatingItem(
-            key.toUpperCase(),
-            false
-        );
+const clickEffects = [
+    "💥","✨","⚡","🔥",
+    "🎉","⭐","🌈","💫",
+    "🚀","🎈","🎵","❤️"
+];
 
-    }
+function randomClickEffect() {
 
-    // Everything else
-    else {
+    return clickEffects[
+        Math.floor(Math.random() * clickEffects.length)
+    ];
 
-        createFloatingItem(
-            randomEmoji(),
-            true
-        );
+}
+
+// ============================
+// Keyboard Events
+// ============================
+
+document.addEventListener("keydown", (e) => {
+
+    if (/^[a-zA-Z0-9]$/.test(e.key)) {
+
+        registerSmash(e.key.toUpperCase(), false);
+
+    } else {
+
+        registerSmash(randomEmoji(), true);
 
     }
 
@@ -392,6 +400,19 @@ document.addEventListener("mousemove", (e) => {
 // Touch Support
 // ============================
 
+document.addEventListener("touchstart", (e) => {
+
+    const touch = e.touches[0];
+
+    registerSmash(randomClickEffect(), true);
+
+    createRipple(
+        touch.clientX,
+        touch.clientY
+    );
+
+});
+
 document.addEventListener("touchmove", (e) => {
 
     if (!gameRunning)
@@ -413,17 +434,36 @@ document.addEventListener("touchmove", (e) => {
 
 document.addEventListener("keydown", (e) => {
 
-    if (!gameRunning)
-        return;
+    if (/^[a-zA-Z0-9]$/.test(e.key)) {
 
-    // Prevent scrolling with space
-    if (e.code === "Space") {
+        registerSmash(e.key.toUpperCase(), false);
 
-        e.preventDefault();
+    } else {
+
+        registerSmash(randomEmoji(), true);
 
     }
 
 });
+
+document.addEventListener("click", (e) => {
+    registerSmash(randomClickEffect(), true);
+    createRipple(e.clientX, e.clientY);
+});
+
+document.addEventListener("touchstart", (e) => {
+
+    const touch = e.touches[0];
+
+    registerSmash("👆", true);
+
+    createRipple(
+        touch.clientX,
+        touch.clientY
+    );
+
+});
+
 window.addEventListener("load", () => {
     createBackgroundBubbles();
     console.log(background.children.length);
@@ -465,3 +505,15 @@ exitFullscreen.addEventListener("click", async () => {
     endGame();
 
 });
+
+function registerSmash(character, isEmoji = false) {
+
+    if (!gameRunning)
+        return;
+
+    totalKeys++;
+
+    updateChaosLevel();
+
+    createFloatingItem(character, isEmoji);
+}
