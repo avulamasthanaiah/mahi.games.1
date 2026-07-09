@@ -220,19 +220,21 @@ restartButton.addEventListener(
     }
 );
 
-shareButton.addEventListener(
-    "click",
-    () => {
+shareButton.addEventListener("click", async () => {
 
-        const text =
-            `I smashed ${totalKeys} keys in ${timer.textContent}! (${chaosLevel.textContent})`;
+    const text = `I smashed ${totalKeys} keys in ${timer.textContent}! (${chaosLevel.textContent})
 
-        navigator.clipboard.writeText(text);
+Play Tiny Chaos:
+${window.location.href}`;
 
-        alert("Result copied to clipboard!");
-
+    try {
+        await navigator.clipboard.writeText(text);
+        alert("Result + game link copied to clipboard!");
+    } catch (err) {
+        alert("Couldn't copy to clipboard.");
     }
-);
+
+});
 
 // ============================
 // Fullscreen Exit
