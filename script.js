@@ -428,40 +428,9 @@ document.addEventListener("touchmove", (e) => {
 
 });
 
-// ============================
-// Prevent Browser Shortcuts
-// ============================
-
-document.addEventListener("keydown", (e) => {
-
-    if (/^[a-zA-Z0-9]$/.test(e.key)) {
-
-        registerSmash(e.key.toUpperCase(), false);
-
-    } else {
-
-        registerSmash(randomEmoji(), true);
-
-    }
-
-});
-
 document.addEventListener("click", (e) => {
     registerSmash(randomClickEffect(), true);
     createRipple(e.clientX, e.clientY);
-});
-
-document.addEventListener("touchstart", (e) => {
-
-    const touch = e.touches[0];
-
-    registerSmash("👆", true);
-
-    createRipple(
-        touch.clientX,
-        touch.clientY
-    );
-
 });
 
 window.addEventListener("load", () => {
@@ -505,15 +474,3 @@ exitFullscreen.addEventListener("click", async () => {
     endGame();
 
 });
-
-function registerSmash(character, isEmoji = false) {
-
-    if (!gameRunning)
-        return;
-
-    totalKeys++;
-
-    updateChaosLevel();
-
-    createFloatingItem(character, isEmoji);
-}
